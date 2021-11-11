@@ -1,0 +1,32 @@
+##imports
+import(
+stats,
+utils,
+graphics,
+grDevices,
+qtl,
+wgaim,
+ggplot2,
+MASS)
+
+##[exports]
+export(
+getQTL,
+mvwgaim.asreml,
+mvwgaim.default,
+mvwgaim,
+summary.mvwgaim,
+waldTest,
+waldTest.asreml,
+pchisq.mixture,
+qchisq.mixture,
+qtlMSelect,
+fa.modify,
+favar.init)
+
+##[S3 Methods]
+S3method(summary, mvwgaim)
+S3method(mvwgaim, asreml)
+S3method(mvwgaim, default)
+S3method(waldTest, asreml)
+
