@@ -35,4 +35,4 @@ visit the help files of the package.
 Verbyla, A.P., Cullis, B.R. & Thompson, R. (2007) The analysis of QTL by simultaneous use of the of the full linkage map. *Theoretical and Applied Genetics*, **116**, 95-111.
 
 Verbyla, A. P., & Cullis, B. R. (2012) Multivariate whole genome average
-interval mapping: QTL analysis for multiple traits and/or environments. *Theoretical and applied genetics* **125**, 933¡V953.
+interval mapping: QTL analysis for multiple traits and/or environments. *Theoretical and applied genetics* **125**, 933-953.
