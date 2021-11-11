@@ -18,7 +18,7 @@ To install the package from GitHub you will need to do the following:
 install.packages("devtools")
 ```
 
-2. Install wgaim using 
+2. Install **mvwgaim** using 
 
 
 ```r
