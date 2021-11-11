@@ -3,7 +3,7 @@ Type: Package
 Title: Multi-(environment/variate/treatment) whole genome QTL analysis using ASReml-R V4
 Version: 0.99-0
 Date: 2021-11-10
-Author: Julian Taylor <julian.taylor@adelaide.edu.au>
+Author: Julian Taylor <julian.taylor@adelaide.edu.au> 
 Maintainer: Julian Taylor <julian.taylor@adelaide.edu.au>
 Depends: R (>= 3.0.0), qtl, wgaim
 Imports: ggplot2, MASS
