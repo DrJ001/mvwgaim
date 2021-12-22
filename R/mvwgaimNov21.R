@@ -420,7 +420,7 @@ qtlMSelect <- function(asm, phenoData, genObj, gen.type, selection, n.fa, Trait,
     atilde <- matrix(atilde, ncol=n.trait, byrow=FALSE)
     pev <- pv$vcov[ord, ord]
     pev[is.na(pev)] <- 0
-    Ginv <- ginv(Ga)
+    Ginv <- MASS::ginv(Ga)
     if(!is.null(cov.env <- attr(genObj, "env"))) {
         trans <- cov.env$trans
         qtilde <- trans %*% atilde
