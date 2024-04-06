@@ -434,7 +434,8 @@ qtlMSelect <- function(asm, phenoData, genObj, gen.type, selection, n.fa, Trait,
     vqtilde <- apply(trans, 1, function(el, Ginv, vatilde){
         tmp1 <- kronecker(diag(n.trait), el)
         tmp2 <- t(tmp1) %*% vatilde %*% tmp1
-        sum(diag(Ginv %*% tmp2))
+        #sum(diag(Ginv %*% tmp2))
+        computeTrace(Ginv %*% tmp2)  # Using C++ function
     }, Ginv, vatilde)
     gnams <- names(state)[as.logical(state)]
     names(qtilde) <- names(vqtilde) <- gnams
