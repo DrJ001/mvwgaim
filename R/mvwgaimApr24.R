@@ -156,6 +156,8 @@ mvwgaim.asreml <- function (baseDiag, baseModel, genObj, merge.by = NULL, fix.li
     state <- rep(1, ncol(genoData))
     names(state) <- mnams
     repeat {
+        cat("\nQTL Selection Iteration (", iter,"):\n")
+        cat("============================\n")
         assign("qtlModel", qtlModel, .GlobalEnv)
         assign("phenoData", phenoData, .GlobalEnv)
         selq <- qtlMSelect(qtlModel, phenoData, genObj, gen.type, selection, n.fa, Trait, exclusion.window, state, verboseLev)
@@ -222,12 +224,9 @@ mvwgaim.asreml <- function (baseDiag, baseModel, genObj, merge.by = NULL, fix.li
         LRT <- 2*(qtlDiag$loglik - baseDiag$loglik)
         pvalue <- 1 - pchisq.mixture(LRT, ntrait=n.trait)
         cat("\nLikelihood Ratio Test Statistic: ", LRT, ", P-value: ", pvalue,"\n")
-        if(pvalue < TypeI) {
-            cat("\nQTL Selection Iteration (", iter,"):\n")
-            cat("============================\n")
-        }
-        else break
         iter <- iter + 1
+        if(pvalue > TypeI)
+           break
     }
     qtl.list <- list()
     qtl.list$selection <- selection
@@ -324,8 +323,8 @@ getQTL <- function (object, genObj)
     qtlm <- matrix(ncol = 6, nrow = length(wchr))
     for (i in 1:length(wchr)) {
         lhmark <- genObj$geno[[wchr[i]]]$map[wint[i]]
-        qtlm[i, 1:4] <- c(wchr[i], wint[i], names(lhmark), round(lhmark,
-            2))
+        qtlm[i,1:4] <- c(wchr[i], wint[i], names(lhmark), round(lhmark,
+                                                                2))
         if (object$QTL$type == "interval") {
             if (length(genObj$geno[[wchr[i]]]$map) > 1)
                 rhmark <- genObj$geno[[wchr[i]]]$map[wint[i] +
@@ -333,7 +332,7 @@ getQTL <- function (object, genObj)
             else rhmark <- genObj$geno[[wchr[i]]]$map[wint[i]]
             qtlm[i, 5:6] <- c(names(rhmark), round(rhmark, 2))
         }
-        else qtlm <- qtlm[, -c(5:6)]
+        else qtlm <- qtlm[, -c(5:6),drop=FALSE]
     }
     qtlm
 }
@@ -420,7 +419,7 @@ qtlMSelect <- function(asm, phenoData, genObj, gen.type, selection, n.fa, Trait,
     atilde <- matrix(atilde, ncol=n.trait, byrow=FALSE)
     pev <- pv$vcov[ord, ord]
     pev[is.na(pev)] <- 0
-    Ginv <- MASS::ginv(Ga)
+    Ginv <- MASS::ginv(as.matrix(Ga))
     if(!is.null(cov.env <- attr(genObj, "env"))) {
         trans <- cov.env$trans
         qtilde <- trans %*% atilde
