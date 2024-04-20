@@ -1,7 +1,7 @@
 /**
- * C+ code (using the Eigen libraries via RcppArmadillo) to compute the
- * vqtilde component for the multivariate outlier statistics and speed
- * up processing in the qtlSelect() function.
+ * C+ code (using the Armadillo libraries via RcppArmadillo) to compute
+ * the vqtilde component for the multivariate outlier statistics and
+ * speed up processing in the qtlSelect() function.
  *
  * Code author: Russell Edson, Biometry Hub
  * Date last modified: 20/04/2024
@@ -53,41 +53,3 @@ Rcpp::NumericVector compute_vqtilde(Rcpp::NumericMatrix trans,
   }
   return vqtilde;
 }
-
-
-
-
-/*
-// Old Eigen solution (couldn't get this to work)
-// //' Computes the matrix product vqtilde. Assumes R base matrix inputs.
-//  //'
-//  //' @param trans The matrix product M^T(MM^T)^{-1}, typically many rows
-//  //' @param Ginv The inverse matrix G_a^-
-//  //' @param vatilde The variance matrix var(tilde(a))
-//  //' @param ntrait The number of traits
-//  //' @return The matrix vqtilde
-//  //' @noRd
-//  // [[Rcpp::export]]
-// Eigen::MatrixXd compute_vqtilde(Eigen::Map<Eigen::MatrixXd> trans,
-//     Eigen::Map<Eigen::MatrixXd> Ginv, Eigen::Map<Eigen::MatrixXd> vatilde,
-//     int ntrait) {
-//   std::cout << "got here" << std::endl;
-
-//   // We work on the kth slice of trans for each genetic marker
-//   // separately, and also divvy up vatilde into blocks for the
-//   // matrix multiplication.
-//   int n = trans.rows(), p = trans.cols(), q = vatilde.rows();
-//   Eigen::MatrixXd varq(ntrait, ntrait), vqtilde(n, 1);
-//   for (int k = 0; k < n; k++) {
-//     for (int i = 0; i < varq.rows(); i++) {
-//       for (int j = 0; j < varq.cols(); j++) {
-//         varq(i, j) = trans.row(k) * vatilde.block(i*p, j*q, p, q) *
-//             trans.row(k).transpose();
-//       }
-//     }
-//     vqtilde(k, 1) = (Ginv * varq).trace();
-//   }
-
-//   return vqtilde;
-// }
-*/
