@@ -430,11 +430,14 @@ qtlMSelect <- function(asm, phenoData, genObj, gen.type, selection, n.fa, Trait,
         vatilde <- kronecker(Ga, diag(nrow(atilde))) - pev
     }
     qtilde <- apply(qtilde, 1, function(el, Ginv) sum(c(t(el * Ginv)*el)), Ginv)
-    vqtilde <- apply(trans, 1, function(el, Ginv, vatilde){
-        tmp1 <- kronecker(diag(n.trait), el)
-        tmp2 <- t(tmp1) %*% vatilde %*% tmp1
-        sum(diag(Ginv %*% tmp2))
-    }, Ginv, vatilde)
+
+    #vqtilde <- apply(trans, 1, function(el, Ginv, vatilde){
+    #  tmp1 <- kronecker(diag(n.trait), el)
+    #  tmp2 <- t(tmp1) %*% vatilde %*% tmp1
+    #  sum(diag(as.matrix(Ginv %*% tmp2)))
+    #}, Ginv, vatilde)
+    vqtilde <- compute_vqtilde(trans, Ginv, as.matrix(vatilde), n.trait)
+    
     gnams <- names(state)[as.logical(state)]
     names(qtilde) <- names(vqtilde) <- gnams
     oint <- ifelse(!is.na(qtilde/vqtilde), qtilde/vqtilde, 0)

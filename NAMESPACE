@@ -7,7 +7,9 @@ grDevices,
 qtl,
 wgaim,
 ggplot2,
-MASS)
+MASS,
+Rcpp,
+RcppArmadillo)
 
 ##[exports]
 export(
@@ -30,3 +32,4 @@ S3method(mvwgaim, asreml)
 S3method(mvwgaim, default)
 S3method(waldTest, asreml)
 
+useDynLib(mvwgaim, .registration=TRUE)
