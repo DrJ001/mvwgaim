@@ -4,7 +4,7 @@
  * speed up processing in the qtlSelect() function.
  *
  * Code author: Russell Edson, Biometry Hub
- * Date last modified: 20/04/2024
+ * Date last modified: 19/11/2024
  */
 #include <RcppArmadillo.h>
 
@@ -20,7 +20,6 @@
 //' @param vatilde The variance matrix var(tilde(a))
 //' @param ntrait The number of traits
 //' @return The matrix vqtilde
-//' @noRd
 // [[Rcpp::export]]
 Rcpp::NumericVector compute_vqtilde(Rcpp::NumericMatrix trans,
     Rcpp::NumericMatrix Ginv, Rcpp::NumericMatrix vatilde, int ntrait) {

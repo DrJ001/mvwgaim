@@ -436,7 +436,7 @@ qtlMSelect <- function(asm, phenoData, genObj, gen.type, selection, n.fa, Trait,
     #  tmp2 <- t(tmp1) %*% vatilde %*% tmp1
     #  sum(diag(as.matrix(Ginv %*% tmp2)))
     #}, Ginv, vatilde)
-    vqtilde <- mvwgaim:::compute_vqtilde(trans, Ginv, as.matrix(vatilde), n.trait)
+    vqtilde <- compute_vqtilde(trans, Ginv, as.matrix(vatilde), n.trait)
     
     gnams <- names(state)[as.logical(state)]
     names(qtilde) <- names(vqtilde) <- gnams
