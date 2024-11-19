@@ -23,7 +23,6 @@ waldTest.asreml,
 pchisq.mixture,
 qchisq.mixture,
 qtlMSelect,
-compute_vqtilde,
 fa.modify,
 favar.init)
 
