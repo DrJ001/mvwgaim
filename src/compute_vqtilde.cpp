@@ -20,6 +20,7 @@
 //' @param vatilde The variance matrix var(tilde(a))
 //' @param ntrait The number of traits
 //' @return The matrix vqtilde
+//' @export
 // [[Rcpp::export]]
 Rcpp::NumericVector compute_vqtilde(Rcpp::NumericMatrix trans,
     Rcpp::NumericMatrix Ginv, Rcpp::NumericMatrix vatilde, int ntrait) {
