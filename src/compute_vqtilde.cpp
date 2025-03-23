@@ -4,7 +4,7 @@
  * speed up processing in the qtlSelect() function.
  *
  * Code author: Russell Edson, Biometry Hub
- * Date last modified: 20/04/2024
+ * Date last modified: 19/11/2024
  */
 #include <RcppArmadillo.h>
 
