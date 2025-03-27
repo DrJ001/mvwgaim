@@ -224,9 +224,9 @@ mvwgaim.asreml <- function (baseDiag, baseModel, genObj, merge.by = NULL, fix.li
         LRT <- 2*(qtlDiag$loglik - baseDiag$loglik)
         pvalue <- 1 - pchisq.mixture(LRT, ntrait=n.trait)
         cat("\nLikelihood Ratio Test Statistic: ", LRT, ", P-value: ", pvalue,"\n")
+        iter <- iter + 1
         if(pvalue > TypeI | (breakout == iter))
-            break
-         iter <- iter + 1
+           break
     }
     qtl.list <- list()
     qtl.list$selection <- selection
