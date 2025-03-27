@@ -225,7 +225,7 @@ mvwgaim.asreml <- function (baseDiag, baseModel, genObj, merge.by = NULL, fix.li
         pvalue <- 1 - pchisq.mixture(LRT, ntrait=n.trait)
         cat("\nLikelihood Ratio Test Statistic: ", LRT, ", P-value: ", pvalue,"\n")
         iter <- iter + 1
-        if(pvalue > TypeI)
+        if(pvalue > TypeI | (breakout == iter))
            break
     }
     qtl.list <- list()
@@ -437,7 +437,7 @@ qtlMSelect <- function(asm, phenoData, genObj, gen.type, selection, n.fa, Trait,
     #  sum(diag(as.matrix(Ginv %*% tmp2)))
     #}, Ginv, vatilde)
     vqtilde <- compute_vqtilde(trans, Ginv, as.matrix(vatilde), n.trait)
-    
+
     gnams <- names(state)[as.logical(state)]
     names(qtilde) <- names(vqtilde) <- gnams
     oint <- ifelse(!is.na(qtilde/vqtilde), qtilde/vqtilde, 0)
